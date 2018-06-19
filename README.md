@@ -1,4 +1,4 @@
-#egg-notes
+# egg-notes
 - 实现postgres连接
 - 实现kafka连接
 - 通过egg的load模块，增加了一个dao层，来操作数据库。
