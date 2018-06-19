@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/public/javascript/socket.io.js"></script>
+</head>
+
+<body>
+    <button id="emit">emit</button>
+    <button id="clear">clear</button>
+    <div id="data"></div>
+    <script>
+        let eleClear = document.getElementById('clear')
+        let eleEmit = document.getElementById('emit')
+        let eleData = document.getElementById('data')
+
+        
+        const socket = window.io('http://localhost:8000')
+        //const socket = window.io('/')
+        socket.on('connect', () => {
+            console.log('connect')
+        })
+
+        socket.on('passRecord', data => {
+            eleData.innerHTML += JSON.stringify(data) + '</br>'
+        })
+        socket.on('passAlarm', data => {
+            eleData.innerHTML += JSON.stringify(data)
+        })
+        eleEmit.onclick = function () {
+            socket.emit('passRecord')
+        }
+        eleClear.onclick = function () {
+            eleData.innerHTML = ''
+        }
+
+    </script>
+</body>
+
+</html>
