@@ -6,7 +6,7 @@ export default app => {
     load(app)
     const config: KafkaConfig = app.config.kafka
     const zookeepers = config.host.join(',')
-    const client = new Kafka.Client(zookeepers,config.clientId)
+    const client = new Kafka.Client(zookeepers, config.clientId)
     const consumer = new Kafka.Consumer(client, config.topics, config.options)
     const topics = config.topics.map(item => item.topic)
 

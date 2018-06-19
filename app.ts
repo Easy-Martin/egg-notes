@@ -12,7 +12,6 @@ export default (app: Application & any) => {
     app.loader.loadToContext(dirs, 'dao', {
         call: true,
         caseStyle: 'lower',
-        fieldClass: 'daoClasses',
-        directory: dirs
+        fieldClass: 'daoClasses'
     })
 }

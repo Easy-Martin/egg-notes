@@ -51,7 +51,7 @@ export default (appInfo: EggAppInfo) => {
     config.pg = {
         client: {
             user: 'postgres',
-            host: 'localhost',
+            host: '47.95.242.150',
             database: 'postgres',
             password: 'postgres',
             port: '5432'
