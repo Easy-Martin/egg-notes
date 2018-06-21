@@ -1,17 +1,12 @@
-import { BizConfig, JwtConfig, GZipConfig, KafkaConfig } from './config.d'
+import { BizConfig, CustomConfig } from './config.d'
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg'
 import * as path from 'path'
 
 export default (appInfo: EggAppInfo) => {
-    const config = {} as PowerPartial<
-        EggAppConfig & JwtConfig & GZipConfig & KafkaConfig
-    > &
-        BizConfig
+    const config = {} as PowerPartial<EggAppConfig & CustomConfig> & BizConfig
 
     // app special config
-    config.sourceUrl = `http://localhost${
-        appInfo.name
-    }`
+    config.sourceUrl = `http://localhost${appInfo.name}`
 
     // override config from framework / plugin
     // use for cookie sign key, should change to your own and keep security
@@ -87,15 +82,22 @@ export default (appInfo: EggAppInfo) => {
         topics: [
             {
                 topic: 'nodejs',
-                partition: 0
-                //offset: 0
+                partition: 0,
+                offset: 0
+            },
+            {
+                topic: 'test',
+                partition: 0,
+                offset: 0
             }
         ],
         options: {
-            autoCommit: false,
+            id: 'egg-consumer-nodejs',
+            groupId: 'kafka-node-group',
+            autoCommit: true,
             fetchMaxWaitMs: 1000,
-            fetchMaxBytes: 1024 * 1024
-            //fromOffset: true
+            fetchMaxBytes: 1024 * 1024,
+            fromOffset: false,
         }
     }
     return config

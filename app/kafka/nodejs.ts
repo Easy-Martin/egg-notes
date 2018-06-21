@@ -9,8 +9,7 @@ export type TopicNodejs = Application & TopicNodejsMethods
 
 export default {
     async test1(message) {
-        
-        this.io.of('/').emit('passAlarm',message)
+        this.io.of('/').emit('passAlarm', message)
     },
     async test2(message) {
         console.log(message)

@@ -15,7 +15,7 @@ export type BizConfig = {
 
 //jwt
 export type JwtConfig = {
-    ignore: Array<string> & Function
+    ignore?: Array<string> | function ():boolean;
     secret: string
 }
 
@@ -25,8 +25,8 @@ export type GZipConfig = {
 }
 
 export type KafkaConfig = {
-    clientId: string
+    clientId?: string
     host: Array<string>
-    topics: OffsetFetchRequest
-    options: { [key: string]: any }
+    topics: Array<OffsetFetchRequest>
+    options: ConsumerOptions
 }
