@@ -14,7 +14,7 @@ export default async app => {
 
     const offset = new Kafka.Offset(client)
 
-    const topics = await fixOffset(offset, config.topics)
+    const topics = await fixOffsetToLast(offset, config.topics)
 
     const consumer = new Kafka.Consumer(client, topics, config.options)
 
@@ -70,7 +70,7 @@ export default async app => {
     })
 }
 
-function fixOffset(
+function fixOffsetToLast(
     offset: Offset,
     topics: Array<OffsetFetchRequest>
 ): Promise<Array<OffsetFetchRequest>> {
