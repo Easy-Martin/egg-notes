@@ -2,8 +2,9 @@ import * as Kafka from 'kafka-node'
 import { KafkaConfig } from '../config/config.d'
 import load from './kafkaLoad'
 import { Offset, OffsetFetchRequest } from 'kafka-node'
+import { Application } from 'egg'
 
-export default async app => {
+export default async (app: Application) => {
     load(app)
 
     const config: KafkaConfig = app.config.kafka
@@ -23,10 +24,10 @@ export default async app => {
         JSON.stringify(topics)
     )
 
-    consumer.on('message', message => {
+    consumer.on('message', (message: any) => {
         const topicConsumers = app.kafka[message.topic]
         if (topicConsumers) {
-            Object.keys(topicConsumers).map(name => {
+            Object.keys(topicConsumers).map((name: string) => {
                 topicConsumers[name].call(app, message.value)
             })
         }
@@ -59,7 +60,7 @@ export default async app => {
         })
     })
 
-    consumer.on('error', error => {
+    consumer.on('error', (error: Error) => {
         app.coreLogger.error(`[egg-kafka] init instance error`, error)
     })
 
@@ -72,8 +73,8 @@ export default async app => {
 
 function fixOffsetToLast(
     offset: Offset,
-    topics: Array<OffsetFetchRequest>
-): Promise<Array<OffsetFetchRequest>> {
+    topics: OffsetFetchRequest[]
+): Promise<OffsetFetchRequest[]> {
     return new Promise((resolve, reject) => {
         offset.fetchLatestOffsets(
             topics.map(item => item.topic),

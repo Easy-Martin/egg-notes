@@ -2,7 +2,7 @@ import { BaseContextClass } from 'egg'
 
 export class BaseDao extends BaseContextClass {
     get SQLLogger() {
-        let logger = this.ctx.getLogger('sqlLogger')
+        const logger = this.ctx.getLogger('sqlLogger')
         return {
             info: (msg: any, ...args: any[]): void => {
                 logger.info('[DAO]', msg, ...args)

@@ -1,8 +1,8 @@
-import { Controller } from 'egg';
+import { Controller } from 'egg'
 
 export default class HomeController extends Controller {
-  public async index() {
-    const { ctx } = this;
-    await ctx.render("home")
-  }
+    public async index() {
+        const { ctx } = this
+        await ctx.render('home')
+    }
 }

@@ -25,10 +25,10 @@
             console.log('connect')
         })
 
-        socket.on('passRecord', data => {
+        socket.on('snapEvent', data => {
             eleData.innerHTML += JSON.stringify(data) + '</br>'
         })
-        socket.on('passAlarm', data => {
+        socket.on('alarmEvent', data => {
             eleData.innerHTML += JSON.stringify(data)
         })
         eleEmit.onclick = function () {

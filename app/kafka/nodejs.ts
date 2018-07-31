@@ -12,6 +12,6 @@ export default {
         this.io.of('/').emit('passAlarm', message)
     },
     async test2(message) {
-        console.log(message)
+        this.logger.info(message)
     }
 } as TopicNodejs

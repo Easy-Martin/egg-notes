@@ -4,7 +4,7 @@ class NotifyDao extends BaseDao {
     public async saveAlarm() {
         const { app } = this
         const pool = app.pg
-        const querySQL = 'SELECT * from test_user'
+        const querySQL = 'SELECT * from t_user'
         try {
             const { rows } = await pool.query(querySQL)
             this.SQLLogger.info(querySQL)
