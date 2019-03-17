@@ -32,6 +32,18 @@ export default (appInfo: EggAppInfo) => {
         },
         root: [path.join(appInfo.baseDir, 'app/view')].join(',')
     }
+    config.mysql = {
+        // host
+        host: '148.70.49.117',
+        // port
+        port: '3306',
+        // username
+        user: 'root',
+        // password
+        password: '12345678',
+        // database
+        database: 'mysql',
+    }
     config.security = {
         csrf: {
             ignore: () => true

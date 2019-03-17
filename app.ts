@@ -1,9 +1,9 @@
 import { Application } from 'egg'
 import * as path from 'path'
-import PG from './lib/pg'
+// import PG from './lib/pg'
 import CreateKafka from './lib/kafka'
 export default (app: Application & any) => {
-    PG(app)
+    // PG(app)
     CreateKafka(app)
     let dirs = app.loader
         .getLoadUnits()
